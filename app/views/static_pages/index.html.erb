@@ -1,0 +1,19 @@
+<br><br>
+<%= form_with(url:'/static_pages', method: 'get') do |f| %>
+  <%= f.text_field :user %>
+  <%= f.submit %>
+<% end %>
+<% if @images %>
+<% @images.each do |img| %>
+    <br>
+      <%= image_tag Flickr.url(img), loading: 'lazy' %>
+     <%end%>
+  <% end %>
+    <% flash.each do |type, msg| %>
+    <br>
+      <div style="color:red">
+        <%= msg %>
+      </div>
+      <br>
+    <% end %>
+  
