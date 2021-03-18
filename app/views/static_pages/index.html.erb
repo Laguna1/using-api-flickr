@@ -1,19 +1,18 @@
-<br><br>
+<% if params[:user] != nil %>
+<div>
+<h1>This is user: "<%= params[:user] %>" profile</h1>
+<%= link_to 'Homepage', root_path %><br><br>
+<%else%>
+<h1>Homepage</h1>
+<%end%>
 <%= form_with(url:'/static_pages', method: 'get') do |f| %>
-  <%= f.text_field :user %>
+  <%= f.text_field :user, value: params[:user] %>
   <%= f.submit %>
 <% end %>
 <% if @images %>
-<% @images.each do |img| %>
-    <br>
-      <%= image_tag Flickr.url(img), loading: 'lazy' %>
-     <%end%>
-  <% end %>
-    <% flash.each do |type, msg| %>
-    <br>
-      <div style="color:red">
-        <%= msg %>
-      </div>
-      <br>
-    <% end %>
-  
+  <% @images.each do |img| %>
+  <br>
+    <%= image_tag Flickr.url(img), loading: 'lazy' %>
+   <%end%>
+<% end %>
+</div>
